@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({
@@ -12,6 +13,7 @@ class Calendar extends StatefulWidget {
 
 class _CalendarState extends State<Calendar> {
   DateTime belgilanganKun = DateTime.now();
+
 
   void previuosDate() {
     setState(() {
@@ -57,7 +59,7 @@ class _CalendarState extends State<Calendar> {
             child: Row(
               children: [
                 Text(
-                  "${DateTime(belgilanganKun.year, belgilanganKun.month)}",
+                  "${DateFormat("MMMM, y").format(belgilanganKun)}",
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 Spacer(),
@@ -78,6 +80,7 @@ class _CalendarState extends State<Calendar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+
                 Container(
                   height: 72,
                   width: 46,
@@ -91,6 +94,7 @@ class _CalendarState extends State<Calendar> {
                       children: [
                         Text(
                           "Mo",
+                          // "${DateFormat("E").format(belgilanganKun)}",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white,
@@ -100,7 +104,7 @@ class _CalendarState extends State<Calendar> {
                           height: 7,
                         ),
                         Text(
-                          "22",
+                         " ${DateFormat("dd").format(belgilanganKun)}",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white,
@@ -133,7 +137,7 @@ class _CalendarState extends State<Calendar> {
                     child: Column(
                       children: [
                         Text(
-                          "Mo",
+                          "Tu",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white,
@@ -176,7 +180,7 @@ class _CalendarState extends State<Calendar> {
                     child: Column(
                       children: [
                         Text(
-                          "Mo",
+                          "We",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white,
@@ -219,7 +223,7 @@ class _CalendarState extends State<Calendar> {
                     child: Column(
                       children: [
                         Text(
-                          "Mo",
+                          "Th",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white,
@@ -262,7 +266,7 @@ class _CalendarState extends State<Calendar> {
                     child: Column(
                       children: [
                         Text(
-                          "Mo",
+                          "Fr",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white,
@@ -305,50 +309,7 @@ class _CalendarState extends State<Calendar> {
                     child: Column(
                       children: [
                         Text(
-                          "Mo",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text(
-                          "22",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Container(
-                          height: 1,
-                          width: 14.53,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 72,
-                  width: 46,
-                  decoration: BoxDecoration(
-                    color: Color(0xff1E1E20),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 12),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Mo",
+                          "Sa",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white,
