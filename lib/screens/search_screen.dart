@@ -6,6 +6,7 @@ class SearchScreen extends StatelessWidget {
 
   const SearchScreen({Key? key, required this.appTitle}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +35,10 @@ class SearchScreen extends StatelessWidget {
           title: Form(
             child: TextFormField(),
           )),
-    ));
+    ),
+    body:   Center(
+      child: Container()
+    ),
+    );
   }
 }

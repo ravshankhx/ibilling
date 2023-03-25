@@ -1,0 +1,2 @@
+
+enum ScreenEnum {contractScreen,invoiceScreen}
