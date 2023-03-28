@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
 
 class SearchScreen extends StatelessWidget {
   final String appTitle;
@@ -11,16 +10,16 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-      preferredSize: Size.fromHeight(51),
+      preferredSize: const Size.fromHeight(51),
       child: AppBar(
-          backgroundColor: Color(0xff141416),
+          backgroundColor: const Color(0xff141416),
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context,true);
             },
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
           ),
-          actions: [
+          actions: const [
             SizedBox(
               width: 20,
             ),

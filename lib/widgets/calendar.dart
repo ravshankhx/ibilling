@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
+import 'day.dart';
+
 class Calendar extends StatefulWidget {
-  const Calendar({
+  late DateTime belgilanganKun;
+
+  Calendar({
     Key? key,
+    required this.belgilanganKun,
   }) : super(key: key);
 
   @override
@@ -12,27 +17,39 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  DateTime belgilanganKun = DateTime.now();
-
-
   void previuosDate() {
     setState(() {
-      belgilanganKun = DateTime(
-          belgilanganKun.year, belgilanganKun.month, belgilanganKun.day - 1);
+      widget.belgilanganKun = DateTime(widget.belgilanganKun.year,
+          widget.belgilanganKun.month - 1, widget.belgilanganKun.day);
     });
   }
 
   void nextDate() {
     setState(() {
-      belgilanganKun = DateTime(
-          belgilanganKun.year, belgilanganKun.month, belgilanganKun.day + 1);
+      widget.belgilanganKun = DateTime(
+          widget.belgilanganKun.year, widget.belgilanganKun.month + 1, widget.belgilanganKun.day);
+    });
+  }
+
+  void setThisDate(BuildContext context) {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime(2024),
+    ).then((kun) {
+      setState(() {
+        if (kun != null) {
+          widget.belgilanganKun = kun;
+        }
+      });
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           boxShadow: [
             BoxShadow(
                 offset: Offset(0, 4),
@@ -50,297 +67,62 @@ class _CalendarState extends State<Calendar> {
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(
+            margin: const EdgeInsets.only(
               top: 12,
               left: 16,
               right: 16,
-              bottom: 24,
+              bottom: 10,
             ),
             child: Row(
               children: [
-                Text(
-                  "${DateFormat("MMMM, y").format(belgilanganKun)}",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                Spacer(),
-
+                TextButton(
+                    onPressed: () => setThisDate(context),
+                    child: SizedBox(
+                      width: 125,
+                      height: 25,
+                      child: Center(
+                        child: Text(
+                          DateFormat("MMMM, y").format(widget.belgilanganKun),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 15),
+                        ),
+                      ),
+                    )),
+                const Spacer(),
                 GestureDetector(
-                  onTap:
-                  previuosDate,
-                    child: SvgPicture.asset("assets/icons/arrow_back.svg")),
-                SizedBox(
+                  onTap: previuosDate,
+                  child: SvgPicture.asset("assets/icons/arrow_back.svg"),
+                ),
+                const SizedBox(
                   width: 32,
                 ),
-                SvgPicture.asset("assets/icons/arrow_forward.svg"),
+                GestureDetector(
+                  onTap: nextDate,
+                  child: SvgPicture.asset("assets/icons/arrow_forward.svg"),
+                ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-
-                Container(
-                  height: 72,
-                  width: 46,
-                  decoration: BoxDecoration(
-                    color: Color(0xff1E1E20),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 12),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Mo",
-                          // "${DateFormat("E").format(belgilanganKun)}",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text(
-                         " ${DateFormat("dd").format(belgilanganKun)}",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Container(
-                          height: 1,
-                          width: 14.53,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 72,
-                  width: 46,
-                  decoration: BoxDecoration(
-                    color: Color(0xff1E1E20),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 12),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Tu",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text(
-                          "22",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Container(
-                          height: 1,
-                          width: 14.53,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 72,
-                  width: 46,
-                  decoration: BoxDecoration(
-                    color: Color(0xff00A795),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 12),
-                    child: Column(
-                      children: [
-                        Text(
-                          "We",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text(
-                          "22",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Container(
-                          height: 1,
-                          width: 14.53,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 72,
-                  width: 46,
-                  decoration: BoxDecoration(
-                    color: Color(0xff1E1E20),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 12),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Th",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text(
-                          "22",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Container(
-                          height: 1,
-                          width: 14.53,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 72,
-                  width: 46,
-                  decoration: BoxDecoration(
-                    color: Color(0xff1E1E20),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 12),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Fr",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text(
-                          "22",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Container(
-                          height: 1,
-                          width: 14.53,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 72,
-                  width: 46,
-                  decoration: BoxDecoration(
-                    color: Color(0xff1E1E20),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 12),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Sa",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text(
-                          "22",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Container(
-                          height: 1,
-                          width: 14.53,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+          Container(
+            height: 72,
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: GridView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: DateTime(widget.belgilanganKun.year,
+                      widget.belgilanganKun.month + 1, 0)
+                  .day,
+              itemBuilder: (context, index) {
+                return Day(
+                  index: index,
+                  belgilanganKun: widget.belgilanganKun,
+                  dayColor: Colors.red,
+                );
+              },
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 72 / 46,
+                  crossAxisCount: 1,
+                  mainAxisSpacing: 15),
             ),
           )
         ],

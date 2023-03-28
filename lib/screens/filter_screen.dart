@@ -10,16 +10,16 @@ class FilterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      backgroundColor: Color(0xff000000),
+      backgroundColor: const Color(0xff000000),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(51),
+        preferredSize: const Size.fromHeight(51),
         child: AppBar(
-            backgroundColor: Color(0xff141416),
+            backgroundColor: const Color(0xff141416),
             leading: IconButton(
               onPressed: () {
                 Navigator.pop(context, true);
               },
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
             ),
 
             elevation: 0,
@@ -33,25 +33,25 @@ class FilterScreen extends StatelessWidget {
 
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Status",
               style: TextStyle(
                   fontWeight: FontWeight.w700, color: Color(0xff999999)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Row(
               children: [
                 Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 24,
                       width: 120,
 
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: const [
                           Icon(IconlyBold.tick_square,
                               color: Color(0xff999999)),
                           SizedBox(width: 8,),
@@ -62,13 +62,13 @@ class FilterScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20,),
-                    Container(
+                    const SizedBox(height: 20,),
+                    SizedBox(
                       height: 24,
                       width: 120,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: const [
                           Icon(IconlyBold.tick_square,
                               color: Color(0xff999999)),
                           SizedBox(width: 8,),
@@ -81,17 +81,17 @@ class FilterScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 43,
                 ),
                 Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 24,
                       width: 180,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: const [
                           Icon(IconlyBold.tick_square,
                               color: Color(0xff999999)),
                           SizedBox(width: 8,),
@@ -102,13 +102,13 @@ class FilterScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20,),
-                    Container(
+                    const SizedBox(height: 20,),
+                    SizedBox(
                       height: 24,
                       width: 180,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: const [
                           Icon(IconlyBold.tick_square,
                               color: Color(0xff999999)),
                           SizedBox(width: 8,),
@@ -124,13 +124,13 @@ class FilterScreen extends StatelessWidget {
 
               ],
             ),
-            SizedBox(height: 32,),
-            Text(
+            const SizedBox(height: 32,),
+            const Text(
               "Date",
               style: TextStyle(
                   fontWeight: FontWeight.w700, color: Color(0xff999999)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Row(
@@ -139,11 +139,11 @@ class FilterScreen extends StatelessWidget {
                   height: 37,
                   width: 116,
                   decoration: BoxDecoration(
-                      color: Color(0xff2A2A2D),
+                      color: const Color(0xff2A2A2D),
                       borderRadius: BorderRadius.circular(5)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
+                    children: const [
                       Text(
                         "31.11.2021",
                         style: TextStyle(color: Color(0xff999999)),
@@ -152,29 +152,29 @@ class FilterScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 12,
                 ),
                 Container(
                   decoration: BoxDecoration(
                       border: Border.all(
                         width: 2,
-                        color: Color(0xffD1D1D1),
+                        color: const Color(0xffD1D1D1),
                       )),
                   width: 8,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 12,
                 ),
                 Container(
                   height: 37,
                   width: 116,
                   decoration: BoxDecoration(
-                      color: Color(0xff2A2A2D),
+                      color: const Color(0xff2A2A2D),
                       borderRadius: BorderRadius.circular(5)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Text(
                         "To",
                         style: TextStyle(color: Color(0xff999999)),
