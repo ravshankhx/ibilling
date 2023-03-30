@@ -82,9 +82,9 @@ class _DateWidgetState extends State<DateWidget> {
                     children: [
                       Text(
                         DateFormat("dd.MM.y").format(widget.firstDay),
-                        style: TextStyle(color: Color(0xff999999)),
+                        style: const TextStyle(color: Color(0xff999999)),
                       ),
-                      Icon(IconlyBold.calendar, color: Color(0xff999999))
+                      const Icon(IconlyBold.calendar, color: Color(0xff999999))
                     ],
                   ),
                 ),
@@ -118,12 +118,12 @@ class _DateWidgetState extends State<DateWidget> {
                         isSet
                             ? DateFormat("dd.MM.y").format(widget.toDay)
                             : "To",
-                        style: TextStyle(color: Color(0xff999999)),
+                        style: const TextStyle(color: Color(0xff999999)),
                       ),
                       SizedBox(
                         width: isSet ? 0 : 63,
                       ),
-                      Icon(IconlyBold.calendar, color: Color(0xff999999))
+                      const Icon(IconlyBold.calendar, color: Color(0xff999999))
                     ],
                   ),
                 ),

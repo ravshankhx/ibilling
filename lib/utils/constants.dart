@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 enum ScreenEnum { contractScreen, invoiceScreen }
+enum StatusOf { paid, Inprocess, RejectedbyPayme,RejectedbyIq}
 
 class ContractColor {
   static const Color purple = Color(0xFF554E8F);

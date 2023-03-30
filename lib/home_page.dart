@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     HistoryScreen(
       appTitle: "History",
     ),
-    const NewContractScreen(
+    NewContractScreen(
       appTitle: "New",
     ),
     const SavedScreen(
@@ -38,14 +38,15 @@ class _HomePageState extends State<HomePage> {
       appTitle: "Profile",
     ),
   ];
+
   void show(BuildContext context) {}
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: _widgetOptions[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-
         elevation: 0,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
@@ -72,12 +73,12 @@ class _HomePageState extends State<HomePage> {
                     actions: [
                       GestureDetector(
                         onTap: () {
-                          // context.read<ContractBloc>().add(SetScreenEvent(
-                          //     screenEnum: ScreenEnum.contractScreen));
-                          // setState(() {
-                          //   _currentIndex = index;
-                          // });
-                          // Navigator.of(context).pop();
+                          context.read<ContractBloc>().add(SetScreenEvent(
+                              screenEnum: ScreenEnum.contractScreen));
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                          Navigator.of(context).pop();
                         },
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -102,12 +103,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          // context.read<ContractBloc>().add(SetScreenEvent(
-                          //     screenEnum: ScreenEnum.invoiceScreen));
-                          // setState(() {
-                          //   _currentIndex = index;
-                          // });
-                          // Navigator.of(context).pop();
+                          context.read<ContractBloc>().add(SetScreenEvent(
+                              screenEnum: ScreenEnum.invoiceScreen));
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                          Navigator.of(context).pop();
                         },
                         child: Container(
                           decoration: BoxDecoration(
