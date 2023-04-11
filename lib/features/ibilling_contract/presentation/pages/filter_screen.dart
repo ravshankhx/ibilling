@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:ibilling/features/ibilling_contract/presentation/pages/home_page.dart';
 import 'package:iconly/iconly.dart';
 
 class FilterScreen extends StatelessWidget {
   final String appTitle;
+  final int? previous;
 
-  const FilterScreen({Key? key, required this.appTitle}) : super(key: key);
+  const FilterScreen({Key? key, required this.appTitle, this.previous})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: const Color(0xff000000),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(51),
@@ -17,20 +19,20 @@ class FilterScreen extends StatelessWidget {
             backgroundColor: const Color(0xff141416),
             leading: IconButton(
               onPressed: () {
-                Navigator.pop(context, true);
+                PageControllerProvider.of(context)
+                    ?.pageController
+                    .animateToPage(previous ?? 0,
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.linear);
               },
               icon: const Icon(Icons.arrow_back),
             ),
-
             elevation: 0,
             title: Text(appTitle)),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, top: 28, right: 16),
-
         child: Column(
-
-
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
@@ -48,13 +50,14 @@ class FilterScreen extends StatelessWidget {
                     SizedBox(
                       height: 24,
                       width: 120,
-
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: const [
                           Icon(IconlyBold.tick_square,
                               color: Color(0xff999999)),
-                          SizedBox(width: 8,),
+                          SizedBox(
+                            width: 8,
+                          ),
                           Text(
                             "Paid",
                             style: TextStyle(color: Color(0xff999999)),
@@ -62,7 +65,9 @@ class FilterScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     SizedBox(
                       height: 24,
                       width: 120,
@@ -71,7 +76,9 @@ class FilterScreen extends StatelessWidget {
                         children: const [
                           Icon(IconlyBold.tick_square,
                               color: Color(0xff999999)),
-                          SizedBox(width: 8,),
+                          SizedBox(
+                            width: 8,
+                          ),
                           Text(
                             "Paid",
                             style: TextStyle(color: Color(0xff999999)),
@@ -94,7 +101,9 @@ class FilterScreen extends StatelessWidget {
                         children: const [
                           Icon(IconlyBold.tick_square,
                               color: Color(0xff999999)),
-                          SizedBox(width: 8,),
+                          SizedBox(
+                            width: 8,
+                          ),
                           Text(
                             "Rejected by IQ",
                             style: TextStyle(color: Color(0xff999999)),
@@ -102,7 +111,9 @@ class FilterScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     SizedBox(
                       height: 24,
                       width: 180,
@@ -111,7 +122,9 @@ class FilterScreen extends StatelessWidget {
                         children: const [
                           Icon(IconlyBold.tick_square,
                               color: Color(0xff999999)),
-                          SizedBox(width: 8,),
+                          SizedBox(
+                            width: 8,
+                          ),
                           Text(
                             "Rejected by Payme",
                             style: TextStyle(color: Color(0xff999999)),
@@ -121,10 +134,11 @@ class FilterScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-
               ],
             ),
-            const SizedBox(height: 32,),
+            const SizedBox(
+              height: 32,
+            ),
             const Text(
               "Date",
               style: TextStyle(
@@ -158,9 +172,9 @@ class FilterScreen extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                       border: Border.all(
-                        width: 2,
-                        color: const Color(0xffD1D1D1),
-                      )),
+                    width: 2,
+                    color: const Color(0xffD1D1D1),
+                  )),
                   width: 8,
                 ),
                 const SizedBox(
@@ -188,7 +202,6 @@ class FilterScreen extends StatelessWidget {
                 ),
               ],
             )
-
           ],
         ),
       ),

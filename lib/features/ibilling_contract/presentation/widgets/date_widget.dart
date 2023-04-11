@@ -1,15 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ibilling/features/ibilling_contract/presentation/bloc/contract/bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
 
 class DateWidget extends StatefulWidget {
-   late final DateTime firstDay;
-
-   late final DateTime toDay;
-
-  DateWidget({Key? key, required this.firstDay, required this.toDay})
-      : super(key: key);
+  DateWidget({Key? key}) : super(key: key);
 
   @override
   State<DateWidget> createState() => _DateWidgetState();
@@ -18,9 +15,10 @@ class DateWidget extends StatefulWidget {
 class _DateWidgetState extends State<DateWidget> {
   bool isSet = false;
 
-  void setfirstDate(
-    BuildContext context,
-  ) {
+  DateTime firstDay = DateTime.now();
+  DateTime lastDay = DateTime.now();
+
+  void setfirstDate(BuildContext context) {
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -28,8 +26,12 @@ class _DateWidgetState extends State<DateWidget> {
       lastDate: DateTime.now(),
     ).then((kun) {
       setState(() {
-        if((kun != null)||(widget.firstDay.isBefore(widget.toDay))) {
-          widget.firstDay = kun!;
+        // context.read<ContractBloc>().add(LoadAllContractsEvent(
+        //   DateFormat("yyyy.MM.dd").format(firstDay),
+        //   DateFormat("yyyy.MM.dd").format(lastDay),
+        // ));
+        if ((kun != null) || (kun!.isBefore(lastDay))) {
+          firstDay = kun;
         }
       });
     });
@@ -43,10 +45,14 @@ class _DateWidgetState extends State<DateWidget> {
       lastDate: DateTime.now(),
     ).then((kun) {
       setState(() {
-        if ((kun != null)||(widget.firstDay.isBefore(widget.toDay))) {
+        if ((kun != null) || (kun!.isAfter(firstDay))) {
+          lastDay = kun;
+          isSet = true;
 
-          widget.toDay = kun!;
-          isSet =true;
+          context.read<ContractBloc>().add(LoadHistoryContractsEvent(
+                DateFormat("yyyy-MM-dd").format(firstDay),
+                DateFormat("yyyy-MM-dd").format(lastDay),
+              ));
         }
       });
     });
@@ -81,7 +87,7 @@ class _DateWidgetState extends State<DateWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        DateFormat("dd.MM.y").format(widget.firstDay),
+                        DateFormat("dd.MM.y").format(firstDay),
                         style: const TextStyle(color: Color(0xff999999)),
                       ),
                       const Icon(IconlyBold.calendar, color: Color(0xff999999))
@@ -115,9 +121,7 @@ class _DateWidgetState extends State<DateWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        isSet
-                            ? DateFormat("dd.MM.y").format(widget.toDay)
-                            : "To",
+                        isSet ? DateFormat("dd.MM.y").format(lastDay) : "To",
                         style: const TextStyle(color: Color(0xff999999)),
                       ),
                       SizedBox(

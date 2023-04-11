@@ -1,8 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ibilling/features/ibilling_contract/presentation/widgets/portal_target.dart';
 
-import '../widgets/portal_target.dart';
 
 class AddInvoiceScreen extends StatelessWidget {
   const AddInvoiceScreen({

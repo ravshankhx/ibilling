@@ -1,15 +1,17 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconly/iconly.dart';
 
-
 class WPortalTarget extends StatefulWidget {
   final List<String> list;
 
-  const WPortalTarget({Key? key, required this.list}) : super(key: key);
+
+  WPortalTarget({
+    Key? key,
+    required this.list,
+    // this.status,
+  }) : super(key: key);
 
   @override
   State<WPortalTarget> createState() => _WPortalTargetState();
@@ -30,9 +32,10 @@ class _WPortalTargetState extends State<WPortalTarget> {
           style: const TextStyle(color: Color(0xffE7E7E7)),
         ),
         onChanged: (value) => setState(() {
-
           _value = value!;
-          _isOpen=!_isOpen;
+
+          // widget.status = _value;
+          _isOpen = !_isOpen;
         }),
       ));
     }
@@ -63,7 +66,6 @@ class _WPortalTargetState extends State<WPortalTarget> {
         reverseDuration: const Duration(milliseconds: 200),
       ),
       child: InkWell(
-
         onTap: () {
           setState(() {
             _isOpen = !_isOpen;
@@ -105,7 +107,8 @@ class _WPortalTargetState extends State<WPortalTarget> {
 
                 Text(
                   _value,
-                  style: const TextStyle(color: Color(0xffF1F1F1), fontSize: 14),
+                  style:
+                      const TextStyle(color: Color(0xffF1F1F1), fontSize: 14),
                 ),
                 const Spacer(),
 
